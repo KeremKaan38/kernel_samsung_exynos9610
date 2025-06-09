@@ -36,11 +36,9 @@ jobs:
       - name: Run build 
         run: |
           export ROM=${{ matrix.rom }}
-          export KSU=${{ matrix.ksu }}
-          export SUSFS=${{ matrix.susfs }}
           export SELINUX=${{ matrix.selinux }}
           export DEVICE=${{ matrix.device }}
-          ./build.sh -d $DEVICE -v oneui $KSU $SUSFS $SELINUX --android 12
+          ./build.sh -d $DEVICE -v oneui $SELINUX --android 12
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
