@@ -30,8 +30,7 @@ jobs:
       - name: Setup
         run: |
           sudo apt-get update
-          sudo apt install make libssl-dev curl bc pkg-config m4 libtool automake autoconf libelf-dev bzip2 p7zip-full jq python3 python-is-python3 -y 
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+          sudo apt install make libssl-dev curl bc pkg-config m4 libtool automake autoconf libelf-dev bzip2 p7zip-full jq python3 python-is-python3 -y
 
       - name: Run build 
         run: |
