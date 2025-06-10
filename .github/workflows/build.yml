@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        device: [m30s]
+        device: [a50]
         ksu: ['', -k]
         susfs: ['', -s]
         selinux: ['', -p]
@@ -30,14 +30,17 @@ jobs:
       - name: Setup
         run: |
           sudo apt-get update
-          sudo apt install make libssl-dev curl bc pkg-config m4 libtool automake autoconf libelf-dev bzip2 p7zip-full jq python3 python-is-python3 -y
+          sudo apt install make libssl-dev curl bc pkg-config m4 libtool automake autoconf libelf-dev bzip2 p7zip-full jq python3 python-is-python3 -y 
+          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
 
       - name: Run build 
         run: |
           export ROM=${{ matrix.rom }}
+          export KSU=${{ matrix.ksu }}
+          export SUSFS=${{ matrix.susfs }}
           export SELINUX=${{ matrix.selinux }}
           export DEVICE=${{ matrix.device }}
-          ./build.sh -d $DEVICE -v oneui $SELINUX --android 12
+          ./build.sh -d $DEVICE -v oneui $KSU $SUSFS $SELINUX --android 12
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
