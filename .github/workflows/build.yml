@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        device: [a50]
+        device: [m30s]
         ksu: ['', -k]
         susfs: ['', -s]
         selinux: ['', -p]
