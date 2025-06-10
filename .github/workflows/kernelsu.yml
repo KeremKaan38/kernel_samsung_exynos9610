@@ -3,7 +3,7 @@ name: KernelSU Development Build (Galaxy M30S)
 on:
   push:
     branches:
-      - aosp
+      - wip
 
 jobs:
   notify:
@@ -83,9 +83,9 @@ jobs:
           set -eo pipefail
           echo "  I: Building Mint kernel ${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER}"
           if [[ "${{ matrix.enforcing }}" == "e" ]]; then
-            ./build.sh --kernelsu --automated --device m30s --variant aosp --android 12
+            ./build.sh --kernelsu --automated --device m30s --variant oneui --android 12
           elif [[ "${{ matrix.enforcing }}" == "p" ]]; then
-            ./build.sh --kernelsu --automated --device m30s --variant aosp --android 12 --permissive
+            ./build.sh --kernelsu --automated --device m30s --variant oneui --android 12 --permissive
           fi
 
       - name: Prepare release package
